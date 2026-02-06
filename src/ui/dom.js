@@ -41,13 +41,22 @@ export function toastShow(elToast, message) {
 export function renderTasks(listEl, tasks) {
   listEl.innerHTML = "";
 
-  if (!tasks.length) {
-    const li = document.createElement("li");
-    li.className = "item";
-    li.innerHTML = `<div class="muted">No hay tareas para mostrar.</div>`;
-    listEl.appendChild(li);
-    return;
-  }
+if (!tasks.length) {
+  const li = document.createElement("li");
+  li.className = "item empty";
+  li.innerHTML = `
+    <div class="empty-state">
+      <div class="empty-icon">📝</div>
+      <div>
+        <strong>No hay tareas todavía</strong>
+        <div class="muted">Crea tu primera tarea usando el formulario.</div>
+      </div>
+    </div>
+  `;
+  listEl.appendChild(li);
+  return;
+}
+
 
   for (const task of tasks) {
     const li = document.createElement("li");

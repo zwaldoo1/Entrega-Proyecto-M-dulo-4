@@ -105,7 +105,15 @@ p { margin: 8px 0 0; }
 .badge.warn { border-color: rgba(241,196,15,0.55); background: rgba(241,196,15,0.12); }
 .badge.danger { border-color: rgba(255,92,122,0.55); background: rgba(255,92,122,0.12); }
 
-.item h3 { margin: 0; font-size: 16px; }
+.item h3 { margin: 0; font-size: 16px; letter-spacing: .2px; }
+.desc {
+  margin-top: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px dashed var(--border);
+  background: rgba(255,255,255,0.03);
+}
+
 .item .desc { margin-top: 6px; color: var(--muted); font-size: 13px; white-space: pre-wrap; }
 
 .item-actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
@@ -123,3 +131,34 @@ p { margin: 8px 0 0; }
 .toast.show { display: block; }
 
 .footer { padding: 18px 0 26px; }
+.summary { margin: 10px 0 14px; display: grid; gap: 8px; }
+.summary-row { display:flex; justify-content: space-between; align-items:center; }
+
+.progress {
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  border-radius: 999px;
+  background: rgba(106,168,255,0.85);
+  transition: width 250ms ease;
+}
+.item.empty { padding: 18px; }
+.empty-state { display:flex; gap: 12px; align-items:center; }
+.empty-icon {
+  width: 44px; height: 44px;
+  display:grid; place-items:center;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.05);
+  font-size: 20px;
+}
+@keyframes popIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.item { animation: popIn 140ms ease; }

@@ -4,10 +4,14 @@ import { fetchDemoTasks, createRemoteTask } from "./services/api.js";
 import { saveTasks, loadTasks, clearTasks } from "./services/storage.js";
 import { $, renderTasks, toastShow, formatCountdown } from "./ui/dom.js";
 
+
 // ==========================
 // Estado principal
 // ==========================
 const manager = new TaskManager();
+const elProgressText = document.querySelector("#progressText");
+const elProgressBar = document.querySelector("#progressBar");
+
 
 const elForm = $("#taskForm");
 const elList = $("#taskList");
@@ -244,3 +248,8 @@ function render() {
   const { total, done, pending } = manager.getStats();
   elStats.textContent = `${total} totales · ${pending} pendientes · ${done} finalizadas`;
 }
+const { total, done } = manager.getStats();
+const pct = total === 0 ? 0 : Math.round((done / total) * 100);
+if (elProgressText) elProgressText.textContent = `${pct}%`;
+if (elProgressBar) elProgressBar.style.width = `${pct}%`;
+
