@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow - Gestión de Tareas</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <header class="container header">
+      <div>
+        <h1>TaskFlow</h1>
+        <p class="muted">App de gestión de tareas (POO + ES6 + DOM + Async + API + localStorage)</p>
+      </div>
+
+      <div class="header-actions">
+        <button id="btnLoadApi" class="btn btn-secondary" type="button">
+          Cargar tareas desde API
+        </button>
+        <button id="btnClearAll" class="btn btn-danger" type="button">
+          Borrar todo
+        </button>
+      </div>
+    </header>
+
+    <main class="container grid">
+      <section class="card">
+        <h2>Nueva tarea</h2>
+
+        <form id="taskForm" class="form">
+          <label class="field">
+            <span>Título *</span>
+            <input id="title" name="title" type="text" maxlength="80" required placeholder="Ej: Enviar informe" />
+            <small class="muted">Tip: escribe y mira el contador de caracteres</small>
+          </label>
+
+          <label class="field">
+            <span>Descripción</span>
+            <textarea id="description" name="description" rows="3" maxlength="280" placeholder="Detalles opcionales..."></textarea>
+          </label>
+
+          <div class="row">
+            <label class="field">
+              <span>Fecha límite (opcional)</span>
+              <input id="dueDate" name="dueDate" type="datetime-local" />
+            </label>
+
+            <label class="field">
+              <span>Estado inicial</span>
+              <select id="status" name="status">
+                <option value="pending" selected>Pendiente</option>
+                <option value="done">Finalizada</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="row row-actions">
+            <div class="muted" id="liveHint">0/80 caracteres</div>
+            <button class="btn" type="submit">Agregar (con retardo async)</button>
+          </div>
+        </form>
+
+        <div id="toast" class="toast" aria-live="polite" aria-atomic="true"></div>
+      </section>
+
+      <section class="card">
+        <div class="toolbar">
+          <div>
+            <h2>Mis tareas</h2>
+            <p class="muted" id="stats">0 totales</p>
+          </div>
+
+          <div class="toolbar-controls">
+            <input id="search" type="search" placeholder="Buscar (keyup)..." />
+            <select id="filterStatus">
+              <option value="all" selected>Todas</option>
+              <option value="pending">Pendientes</option>
+              <option value="done">Finalizadas</option>
+            </select>
+          </div>
+        </div>
+
+        <ul id="taskList" class="list" aria-label="Lista de tareas"></ul>
+      </section>
+    </main>
+
+    <footer class="container footer muted">
+      <span>Hecho con JavaScript moderno (ES6+).</span>
+    </footer>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>
